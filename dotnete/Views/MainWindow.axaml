@@ -1,0 +1,96 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:dotnete.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="430" d:DesignHeight="560"
+        x:Class="dotnete.Views.MainWindow"
+		Width="430"
+		Height="560"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="DotnetE">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition/>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
+		<Border Grid.Row="0" Background="#d4d2d4"/>
+		<TextBlock Grid.Row="0" Text="DOTNETE" FontSize="19" Margin="5" TextAlignment="Center" FontFamily="Times New Roman"/>
+		<Border Grid.Row="2" Background="#d4d2d4"/>
+		<StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+			<Button Click="ExtAudio" Margin="3" Content="提取音频" FontSize="12" Background="#febc49"/>
+			<Button Click="RepAudio" Margin="3" Content="替换音频" FontSize="12" Background="#46bd57"/>
+			<Button Click="VideoCom" Margin="3" Content="视频压制" FontSize="12" Background="#469bf9"/>
+		</StackPanel>
+		<Border Grid.Row="1" Background="#efefef"/>
+		<Grid Grid.Row="1" Margin="16">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition/>
+				<ColumnDefinition Width="Auto"/>
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+			</Grid.RowDefinitions>
+			<Button Click="VideoInput" Margin="3" Grid.Row="0" Grid.Column="1" Content="视频"/>
+			<Button Click="AudioInput" Margin="3" Grid.Row="1" Grid.Column="1" Content="音频"/>
+			<Button Click="Output" Margin="3" Grid.Row="2" Grid.Column="1" Content="输出"/>
+			<TextBox Name="InputVideoPath" Grid.Row="0" Grid.Column="0" Margin="3" Watermark="路径不能包含中文" Text="{Binding InputVideoPath}" FontFamily="Microsoft YaHei,Simsun,苹方-简,宋体-简"/>
+			<TextBox Name="InputAudioPath" Grid.Row="1" Grid.Column="0" Margin="3" Watermark="如需替换音频请选择" Text="{Binding AudioPath}" FontFamily="Microsoft YaHei,Simsun,苹方-简,宋体-简"/>
+			<TextBox Name="OutputPath" Grid.Row="2" Grid.Column="0" Margin="3" Watermark="设置文件输出路径" Text="{Binding OutputPath}" FontFamily="Microsoft YaHei,Simsun,苹方-简,宋体-简"/>
+			<StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" VerticalAlignment="Center">
+				<TextBlock TextWrapping="Wrap" TextAlignment="Center" Text="视频编码" Margin="3" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+				<ComboBox Name="VideoEncode" Margin="3" SelectedIndex="0" PlaceholderText="                ">
+					<ComboBoxItem>x264</ComboBoxItem>
+					<ComboBoxItem>x265</ComboBoxItem>
+					<ComboBoxItem>xvid</ComboBoxItem>
+					<ComboBoxItem>av1</ComboBoxItem>
+					<ComboBoxItem>复制</ComboBoxItem>
+				</ComboBox>
+				<TextBlock TextWrapping="Wrap" TextAlignment="Center" Text="视频码率" Margin="3" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+				<TextBox Name="VedioBitrate" MaxLength="6" Margin="3" Text="2000"/>
+				<TextBlock TextWrapping="Wrap" TextAlignment="Center" Text="编码帧数" Margin="3" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+				<TextBox Name="FPS" MaxLength="3" Margin="3" Text="60"/>
+			</StackPanel>
+			<StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
+				<TextBlock TextWrapping="Wrap" TextAlignment="Center" Text="音频编码" Margin="3" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+				<ComboBox Name="AudioEncode" Margin="3" SelectedIndex="0" PlaceholderText="                ">
+					<ComboBoxItem>mp3</ComboBoxItem>
+					<ComboBoxItem>acc</ComboBoxItem>
+					<ComboBoxItem>复制</ComboBoxItem>
+				</ComboBox>
+				<TextBlock TextWrapping="Wrap" TextAlignment="Center" Text="音频码率" Margin="3" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+				<TextBox Name="AudioBitrate" MaxLength="4" Margin="3" Text="320"/>
+			</StackPanel>
+			<StackPanel Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
+				<TextBlock TextWrapping="Wrap" TextAlignment="Center" Text="分辨率" Margin="3" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+				<TextBox Name="Width" MaxLength="5" Margin="3" Text="1920"/>
+				<TextBlock TextWrapping="Wrap" TextAlignment="Center" Text="X" Margin="3" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+				<TextBox Name="Height" MaxLength="5" Margin="3" Text="1080"/>
+			</StackPanel>
+			<StackPanel Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
+				<TextBlock TextWrapping="Wrap" TextAlignment="Center" Text="容器" Margin="3" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+				<ComboBox Name="Format" Margin="3" SelectedIndex="0" PlaceholderText="               ">
+					<ComboBoxItem>mp4</ComboBoxItem>
+					<ComboBoxItem>flv</ComboBoxItem>
+					<ComboBoxItem>mov</ComboBoxItem>
+					<ComboBoxItem>avi</ComboBoxItem>
+				</ComboBox>
+			</StackPanel>
+			<TextBlock Name="Log" Margin="3" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Log}"/>
+		</Grid>
+	</Grid>
+
+</Window>
